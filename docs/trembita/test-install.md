@@ -21,14 +21,24 @@ sudo nano /etc/network/interfaces
 
 Приклад налаштувань для статичної IP-адреси має наступний вигляд:
 
-<div class="prep">
+<pre class="prep">
+<code>
 auto ens33
 iface ens33 inet static
 address 192.168.1.100
 netmask 255.255.255.0
 gateway 192.168.1.1
 dns-nameservers 192.168.1.1 8.8.8.8
-</div>
+</code>
+</pre>
+
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
 
 - де **ens33** - системне ім’я мережевого адаптеру, що налаштовується. Дізнатися його можна за допомогою команди `dmesg|grep eth`,
 - **static** - встановлення статичної IP-адреси. У випадку, якщо ви налаштовуєте прив’язку IP-адреси за DHCP, замість static необхідно встановити dhcp і всі інші параметри не налаштовуються,
