@@ -82,3 +82,7 @@ sudo shutdown -r now
 - `<Your-security-server-IP>` - це IP-адреса шлюзу безпечного обміну.
 
 > **Примітка.** Зверніть увагу, що при введенні паролю (password), символи, що ви вводите, не відображаються на екрані - це нормально.
+
+![Вхід на сервер][logo]
+
+[logo]: assets/images/trembita-test-install-1.png  "Logo Title Text 2"
