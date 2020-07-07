@@ -4,7 +4,7 @@
 
 ## Системи на адмініструванні
 
-1. [Трембіта](mark.md)
+1. [Трембіта](Docs/Systems/Trembita/trembita-main.md)
 2. [Вулик](mark.md)
 3. [СЕВ ОВВ](mark.md)
 
