@@ -20,7 +20,7 @@ sudo nano /etc/network/interfaces
 
 Приклад налаштувань для статичної IP-адреси має наступний вигляд:
 
-```bash
+```less
 auto ens33
 iface ens33 inet static
 address 192.168.1.100
