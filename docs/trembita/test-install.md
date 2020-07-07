@@ -4,6 +4,7 @@
 
 1. [Інсталяція операційної системи](#install-1)
 2. [Налаштування мережі](#install-2)
+3. [Додавання репозиторія з пакетами СЕВДЕІР](#install-3)
 
 ### 1. Інсталяція операційної системи {#install-1}
 
@@ -52,3 +53,25 @@ sudo nano /etc/apt/apt.conf.d/10periodic
 <pre class="pre-file-1">
     APT::Periodic::Update-Packages-Lists "0";
 </pre>
+
+Відкрити файл /etc/update-manager/release-upgrades:
+
+```bash
+sudo nano /etc/update-manager/release-upgrades
+```
+
+та встановити параметр Prompt у значення never:
+
+<pre class="pre-file-1">
+    Prompt=never
+</pre>
+
+Після збереження змін у файлах, необхідно перезавантажити операційну систему командою:
+
+```bash
+sudo shutdown -r now
+```
+
+### 3. Додавання репозиторія з пакетами СЕВДЕІР {#install-3}
+
+Підключіться до консолі (командного інтерфейсу) операційної системи шлюзу безпечного обміну, наприклад, за допомогою наступної команди:
