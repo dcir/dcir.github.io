@@ -85,4 +85,4 @@ sudo shutdown -r now
 
 ![Вхід на сервер][logo]
 
-[logo]: assets/images/trembita-test-install-1.png  "Logo Title Text 2"
+[logo]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
