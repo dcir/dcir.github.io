@@ -86,3 +86,26 @@ sudo shutdown -r now
 ![Вхід на сервер][logo]
 
 [logo]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
+
+> **Примітка.** При використанні команди sudo перший раз після входу користувача в операційну систему вас запитає пароль цього користувача для підтвердження адміністративних повноважень у системі.
+
+Для додавання репозиторія з пакетами СЕВДЕІР необхідно закоментувати всі рядки у файлі */etc/apt/sources.list* (вставляючи символ # на початку кожного рядку) та додати наступні нові рядки в кінці файлу:
+
+<pre class="pre-file-1">
+    deb http://01-03-repo-p-01-n.trembita.gov.ua:82/trembita/ member/
+    deb http://02-03-repo-p-02-n.trembita.gov.ua:82/trembita/ member/
+</pre>
+
+Швидко це зробити можна за допомогою наступних двох команд. Перша додає символ коментування # до кожного непустого рядку, друга додає новий необхідний рядок з посиланням до репозиторію в кінець файлу.
+
+```bash
+sudo sed -i 's/^[A-Za-z0-9]/#&/' /etc/apt/sources.list
+echo 'deb http://01-03-repo-p-01-n.trembita.gov.ua:82/trembita/ member/' | sudo tee -a /etc/apt/sources.list
+echo 'deb http://02-03-repo-p-02-n.trembita.gov.ua:82/trembita/ member/' | sudo tee -a /etc/apt/sources.list
+```
+
+Перевірити результат можна за допомогою текстового редактора nano:
+
+```bash
+nano /etc/apt/sources.list
+```
