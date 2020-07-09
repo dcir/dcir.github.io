@@ -14,6 +14,7 @@ ___
     - [6. Налаштування локалі {#install-6}](#6-налаштування-локалі-install-6)
     - [7. Встановлення пакета uxp-securityserver-ua та залежностей {#install-7}](#7-встановлення-пакета-uxp-securityserver-ua-та-залежностей-install-7)
     - [8. Завантаження ліцензій для шлюзу безпечного обміну {#install-8}](#8-завантаження-ліцензій-для-шлюзу-безпечного-обміну-install-8)
+    - [9. Встановлення підтримки захищених носіїв особистих ключів (апаратних токенів)](#9-встановлення-підтримки-захищених-носіїв-особистих-ключів-апаратних-токенів)
 
 ### 1. Інсталяція операційної системи {#install-1}
 
@@ -220,6 +221,129 @@ sudo mv member.test.license.lic /etc/uxp/license.lic
 
 Після установки ліцензії UXP Security Server автоматично визначить наявність файлу з ліцензією і запустить всі необхідні служби (через декілька хвилин, повідомлення веб-інтерфейсу зміниться).
 
+### 9. Встановлення підтримки захищених носіїв особистих ключів (апаратних токенів)
+
+Особисті ключі електронної печатки та шифрування знаходяться на захищеному носії особистих ключів (апаратний токен), який необхідно правильно підключити до віртуальної машини шлюзу безпечного обміну.
+
+В першу чергу, підключіть апаратний токен (захищений носій особистих ключів) до фізичного обладнання - сервера, який забезпечує функціонування програмного забезпечення шлюзу безпечного обміну. Якщо використовується система віртуалізації на сервері - налаштуйте адресацію фізичного порту, до якого підключений апаратний токен, до віртуальної машини шлюзу безпечного обміну.
+
+Правильність адресації можна перевірити через наявність інформації про ключі у операційній системі. Введіть наступну команду на шлюзі безпечного обміну:
+
+```bash
+sudo dmesg | grep usb
+```
+
+![Списки ключів][trembita-test-install-4]
+
+Приклад. З виводу команди видно, що в системі присутні два електронних ключа - Product: IIT E.Key Crystal-1 та  Product: E.Key Almaz-1C відповідно  “Алмаз-1К” та “Кристал-1”.
+
+Для того, щоб шлюз безпечного обміну мав можливість працювати з АЦСК, що видав сертифікати, необхідно додати інформацію про нього у спеціальний файл наступною командою:
+
+```bash
+sudo nano /etc/uxp/uac/osplm.ini
+```
+
+Знайдіть розділ (у квадратних дужках визначаються розділи) з налаштуваннями CMP-сервісу та встановіть параметри доступу:
+
+<pre class="pre-file-1">
+[\SOFTWARE\Institute of Informational Technologies\Certificate Authority-1.3\End User\CMP]
+Use=1
+CommonName=
+Address=ca.informjust.ua
+Port=80
+</pre>
+
+де у поле *Address* вказуємо адресу до сервісу CMP АЦСК, що видав ваші сертифікати (наприклад, ca.informjust.ua або ca.iit.com.ua). Зазначену адресу може надати ваш надавач електронних довірчих послуг. Також, необхідно встановити параметр *Use=1*.
+
+Приклад результату модифікації файлу:
+
+![Модифікований файл токенів][trembita-test-install-5]
+
+Скопіювати файли підтримки ключів:
+
+```bash
+cd
+wget http://01-03-repo-p-01-n.trembita.gov.ua:82/trembita/pac/signer-uac-plugin-1.0.6.jar
+wget -nc http://02-03-repo-p-02-n.trembita.gov.ua:82/trembita/pac/signer-uac-plugin-1.0.6.jar
+wget http://01-03-repo-p-01-n.trembita.gov.ua:82/trembita/pac/EUSignJava.jar
+wget -nc http://02-03-repo-p-02-n.trembita.gov.ua:82/trembita/pac/EUSignJava.jar
+```
+
+Виконати оновлення файлів:
+
+```bash
+sudo cp signer-uac-plugin-1.0.6.jar /usr/share/uxp/jlib/addon/signer/
+sudo cp EUSignJava.jar /usr/share/uxp/jlib/addon/uac/EUSignJava.jar
+```
+
+У випадку, якщо тестове середовище розгорнути у повній відповідності до промислового, виконати наступні команди:
+
+```bash
+sudo /usr/share/uxp/uaic/scripts/_uxp-uaic-integritychecker.sh recalc exec
+sudo uxp-ua-integritychecker.sh start_all
+```
+
+Для ключів ІІТ “Кристал-1” необхідно додатково створити файл:
+
+```bash
+sudo nano  /etc/udev/rules.d/80-uxp-iit-e-keys.rules
+```
+
+та прописати в ньому правила:
+
+<pre class="pre-file-1">
+SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="9301", MODE="0660", GROUP="uxp" 
+SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="9308", MODE="0660", GROUP="uxp"
+</pre>
+
+Для ключів ІІТ “Алмаз-1К”, Автор “Secure Token 337” та Efit EfitKey необхідно встановити пакети підтримки електронних ключів операційною системою Linux а саме Ubuntu 16.04 Server 64bit:
+
+```bash
+sudo apt-get install pcscd libccid pcsc-tools libccid libpcsclite1 opensc
+```
+
+Також, для ключів Автор “Secure Token 337” необхідно встановити драйвер для 64-розрядної ОС Linux:
+
+```bash
+apt install av337p11d
+```
+
+Для використання в якості токену безпеки засіб ІІТ Гряда-301 необхідно до файлу /etc/uxp/uac/osplm.ini додати наступний блок параметрів:
+
+<pre class="pre-file-1">
+[\SOFTWARE\Institute of Informational Technologies\Key Medias\NCM Gryada-301]
+[\SOFTWARE\Institute of Informational Technologies\Key Medias\NCM Gryada-301\Modules]
+[\SOFTWARE\Institute of Informational Technologies\Key Medias\NCM Gryada-301\Modules\001]
+OrderNumber=0
+SN=001
+Address=20.0.0.1
+AddressMask=255.0.0.0
+</pre>
+
+- 001 - це серійний номер пристрою ІІТ Гряда-301,
+- Address - це мережевий адрес пристрою,
+- AddressMask - маска підмережі, у якій знаходиться пристрій.
+
+При використанні захищеного носія EfitKey необхідно виконати наступні дії.
+
+Для того щоб додати (включити) існуючий pcsc-пристрій (захищений носій EfitKey) до відповідного списку pcsc-пристроїв, що підтримуються системою, необхідно скорегувати файл Info.plist
+
+```bash
+sudo nano /usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist
+```
+
+а саме здійснити наступні кроки: 
+
+1. Знайти строку "<key>ifdVendorID</key>" і після елементу "<array>" 
+додати "<string>0xC1A6</string>"
+2. Знайти строку "<key>ifdProductID</key>" і після елементу "<array>" 
+додати "<string>0x0151</string>"
+3. Знайти строку "<key>ifdFriendlyName</key>" і після елементу
+"<array>" додати "<string>EfitTechnologies EfitKey</string>"
+
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
 [trembita-test-install-3]: /assets/images/trembita-test-install-3.png  "Logo Title Text 2"
+[trembita-test-install-4]: /assets/images/trembita-test-install-4.png  "Logo Title Text 2"
+[trembita-test-install-5]: /assets/images/trembita-test-install-5.png  "Logo Title Text 2"
+[trembita-test-install-6]: /assets/images/trembita-test-install-6.png  "Logo Title Text 2"
