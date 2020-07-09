@@ -343,6 +343,32 @@ sudo nano /usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist
 "<array>" додати "<string>EfitTechnologies EfitKey</string>"
 </pre>
 
+Скопіювати бібліотеку драйверів libefitkeynxt.so до каталогу /usr/lib:
+
+```bash
+wget http://01-03-repo-p-01-n.trembita.gov.ua:82/trembita/pac/libefitkeynxt.so
+wget -nc http://02-03-repo-p-02-n.trembita.gov.ua:82/trembita/pac/libefitkeynxt.so
+sudo cp libefitkeynxt.so /usr/lib/
+```
+
+Для роботи libefitkeynxt.so и EfitKey необхідно мати запущений демон pcscd
+
+Під’єднуємо захищений носій ключової інформації "ЕФІТ КЕЙ" та перевіряємо доступність носія в системі:
+
+```bash
+sudo pkcs11-tool -v --list-slots --module /usr/lib/libefitkeynxt.so
+```
+
+У випадку, якщо ключ доступний для системи, має бути виведено інформацію про нього. Наприклад:
+
+![Приклад відображення Efit][trembita-test-install-6]
+
+Після проведених дій обов’язково необхідно перезавантажити операційну систему:
+
+```bash
+sudo shutdown -r now
+```
+
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
 [trembita-test-install-3]: /assets/images/trembita-test-install-3.png  "Logo Title Text 2"
