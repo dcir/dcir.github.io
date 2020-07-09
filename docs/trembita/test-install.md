@@ -334,14 +334,12 @@ sudo nano /usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist
 
 а саме здійснити наступні кроки: 
 
-<pre class="pre-file-1">
-1. Знайти строку "<key>ifdVendorID</key>" і після елементу "<array>" 
+1. Знайти строку **<key>ifdVendorID</key>** і після елементу **<array>**
 додати "<string>0xC1A6</string>"
 2. Знайти строку "<key>ifdProductID</key>" і після елементу "<array>" 
 додати "<string>0x0151</string>"
 3. Знайти строку "<key>ifdFriendlyName</key>" і після елементу
 "<array>" додати "<string>EfitTechnologies EfitKey</string>"
-</pre>
 
 Скопіювати бібліотеку драйверів libefitkeynxt.so до каталогу /usr/lib:
 
