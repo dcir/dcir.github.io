@@ -148,5 +148,17 @@ sudo passwd uxpadmin
 
 ### 6. Налаштування локалі {#install-6}
 
+В операційній системі шлюзу безпечного обміну має бути встановлена локаль en_US.UTF-8. Для встановлення локалі виконайте наступну команду:
+
+```bash
+echo 'LC_ALL=en_US.UTF-8' | sudo tee -a /etc/environment
+```
+
+Перезавантажте змінні оточення наступною командою (зверніть увагу на наявність пробілу після першої крапки):
+
+```bash
+. /etc/environment
+```
+
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
