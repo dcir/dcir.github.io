@@ -32,6 +32,7 @@ ___
   - [6. Утиліта публікування відомостей у Каталозі вебсервісів](#6-утиліта-публікування-відомостей-у-каталозі-вебсервісів)
     - [6.1. Встановлення утиліти публікування відомостей у Каталозі вебсервісів](#61-встановлення-утиліти-публікування-відомостей-у-каталозі-вебсервісів)
     - [6.2. Додання найменування для зареєстрованої підсистеми](#62-додання-найменування-для-зареєстрованої-підсистеми)
+    - [6.3. Додання файлу з керівництвом користувача](#63-додання-файлу-з-керівництвом-користувача)
 
 ### 3.1. Інсталяція операційної системи {#install-1}
 
@@ -652,11 +653,11 @@ sudo ip addr add <Зовнішня-IP-адреса>/32 dev lo
 
 Для тестового середовища Каталог вебсервісів доступний за наступною адресою:
 
-[https://directory-test.trembita.gov.ua:8443]
+[https://directory-test.trembita.gov.ua:8443](https://directory-test.trembita.gov.ua:8443)
 
 Для промислового середовища Каталог вебсервісів доступний за наступною адресою:
 
-[https://directory-prod.trembita.gov.ua:8443]
+[https://directory-prod.trembita.gov.ua:8443](https://directory-test.trembita.gov.ua:8443)
 
 Більшість інформації про наявні сервіси Каталог вебсервісів отримує у автоматичному режимі. Однак, декілька типів полів (атрибутів) Учасник повинен встановити самостійно, у тому числі найменування підсистеми та файл з керівництво користувача конкретного сервісу.
 
@@ -693,6 +694,27 @@ sudo -u uxp-directory directory-cli --target <subsystemFullCode> addFields subsy
 ```bash
 sudo -u uxp-directory directory-cli --target SEVDEIR-TEST/GOV/11110011/0_TEST_cons addFields subsystemName='Тестова підсистема 11'
 ```
+
+### 6.3. Додання файлу з керівництвом користувача
+
+Для того, щоб завантажити файл до Каталогу вебсервісів та прив’язати його до конкретного вебсервісу, необхідно завантажити файл до шлюзу безпечного обміну та запустити утиліту публікування відомостей на шлюзі від імені користувача, що має права sudo, з командою uploadFile documentation.service-guide:
+
+```bash
+sudo -u uxp-directory directory-cli --target <serviceFullCode> upload documentation.service-guide <filePath>
+```
+
+- target - це параметр, що вказує на об’єкт (сервіс), щодо якого виконується певна команда утиліти,
+- `<serviceFullCode>` - повний код сервісу у форматі xRoadInstance/memberClass/memberCode/subsystemCode/serviceCode[/serviceVersion] (якщо сервіс не має версії, то її вказувати не потрібно),
+- uploadFile - команда завантаження файлу з файлової системи шлюзу,
+- documentation.service-guide - код атрибуту керівництва користувача вебсервісу,
+- `<filePath>` - це локальний шлях до файлу, який потрібно завантажити до Каталогу вебсервісів.
+
+Наприклад, завантаження файлу «/home/secadmin/Trembita_service_guide (2).pdf» у якості Керівництва користувача вебсервісу з кодом SEVDEIR-TEST/GOV/11110011/0_TEST_cons/GetCountryNameByCode2/v1:
+
+```bash
+sudo -u uxp-directory directory-cli --target SEVDEIR-TEST/GOV/11110011/0_TEST_cons/GetCountryNameByCode2/v1 upload documentation.service-guide /home/secadmin/Trembita_service_guide\ \(2\).pdf
+```
+
 
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
