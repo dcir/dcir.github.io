@@ -570,6 +570,12 @@ sudo service uxp-signer restart
     </tbody>
 </table>
 
+<pre class="pre-algo-1">
+5. Натисніть "OK".
+6. Відобразиться діалог підтвердження з інформацією про шлюз безпечного обміну. Якщо ви не бачите найменування організації у полі «Organization (O)» - це ознчає, до ваша організації ще не зареєстрована. Зверніться до Адміністратора СЕВДЕІР для уточнення. Якщо всі поля заповнені - натисніть "OK".
+7. Збережіть файл з розширенням .pem на своєму комп’ютері.
+</pre>
+
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
 [trembita-test-install-3]: /assets/images/trembita-test-install-3.png  "Logo Title Text 2"
