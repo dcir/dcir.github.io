@@ -17,6 +17,7 @@ ___
     - [3.9. Встановлення підтримки захищених носіїв особистих ключів (апаратних токенів)](#39-встановлення-підтримки-захищених-носіїв-особистих-ключів-апаратних-токенів)
   - [4. Початкова конфігурація](#4-початкова-конфігурація)
     - [4.1. Ініціалізація шлюзу безпечного обміну](#41-ініціалізація-шлюзу-безпечного-обміну)
+    - [4.2. Введення PIN-коду програмного токену](#42-введення-pin-коду-програмного-токену)
 
 ### 3.1. Інсталяція операційної системи {#install-1}
 
@@ -419,6 +420,23 @@ sudo shutdown -r now
     </tbody>
 </table>
 
+Після введення інформації натисніть «Відправити» (Submit). Ініціалізація може зайняти декілька хвилин. Коли побачите повідомлення про те, що сервер був ініціалізований, натисніть “OK”.
+
+### 4.2. Введення PIN-коду програмного токену
+
+ПЗ UXP Security Server прив’язує всі особисті ключі до токенів безпеки. Після ініціалізації з’явиться помаранчеве повідомлення у верхній частині сторінки з написом "Будь-ласка, введіть PIN-код програмного токену". Це повідомлення вказує, що зазначений токен безпеки в даний час заблокований, а особисті ключі не можуть бути використані. Кожен раз, при перезавантаженні ПЗ UXP Security Server або всієї операційної системи шлюзу безпечного обміну, потрібно увійти (ввести PIN-код) в токен безпеки (в усі використовувані токени безпеки).
+
+Увійдіть в програмний токен безпеки, використовуючи PIN-код, введений під час ініціалізації сервера.
+
+![Інтерфейс ШБО токенів][trembita-test-install-7]
+
+<pre class="pre-algo-1">
+1. Перейдіть в розділ "Ключі та сертифікати".
+2. Знайдіть рядок із написом "Токен: softToken-0".
+3. Натисніть "Введіть PIN-код" в цьому рядку. Відкриється діалогове вікно для введення PIN-коду.
+4. Введіть PIN-код та натисніть “OK”.
+</pre>
+
 
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
@@ -426,3 +444,6 @@ sudo shutdown -r now
 [trembita-test-install-4]: /assets/images/trembita-test-install-4.png  "Logo Title Text 2"
 [trembita-test-install-5]: /assets/images/trembita-test-install-5.png  "Logo Title Text 2"
 [trembita-test-install-6]: /assets/images/trembita-test-install-6.png  "Logo Title Text 2"
+[trembita-test-install-7]: /assets/images/trembita-test-install-7.png  "Logo Title Text 2"
+[trembita-test-install-8]: /assets/images/trembita-test-install-8.png  "Logo Title Text 2"
+[trembita-test-install-9]: /assets/images/trembita-test-install-9.png  "Logo Title Text 2"
