@@ -563,6 +563,18 @@ sudo service uxp-signer restart
             <td><b>Поле</b></td>
             <td>Значення</td>
         </tr>
+        <tr>
+            <td>Використання<br>(Usage)</td>
+            <td><b>Auth</b></td>
+        </tr>
+        <tr>
+            <td>Сервіс сертифікації<br>(Certification Service)</td>
+            <td>Виберіть технологічний центр сертифікації ключів середовища СЕВДЕІР («Trembita CA TEST»)</td>
+        </tr>
+        <tr>
+            <td>CSR Format</td>
+            <td>PEM</td>
+        </tr>
     </tbody>
 </table>
 
