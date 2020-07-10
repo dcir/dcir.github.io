@@ -384,12 +384,10 @@ sudo shutdown -r now
 <table>
     <tbody>
         <tr>
-            <td colspan="2">Власник сервера безпеки
-            (Security Server Owner)</td>
+            <td colspan="2">Власник сервера безпеки<br>(Security Server Owner)</td>
         </tr>
         <tr>
-            <td>Клас Учасника
-            (Member Class)</td>
+            <td>Клас Учасника<br>(Member Class)</td>
             <td>GOV</td>
         </tr>
     </tbody>
