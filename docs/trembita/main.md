@@ -10,4 +10,8 @@
 
 [Встановлення тестового шлюзу безпечного обміну версії 1.12](member-ss-test-install-112.md)
 
+[Інсталяція операційної системи Ubuntu Server 16.04.5 x64](member-install-ubuntu-16-04-5-lts.md)
+
+[Інсталяція антивірусного програмного забезпечення Sophos Antivirus](member-install-sophos-antivirus.md)
+
 [Встановлення промислового шлюзу безпечного обміну](prom-install.md)
