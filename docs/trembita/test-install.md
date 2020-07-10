@@ -547,6 +547,29 @@ sudo service uxp-signer restart
 4. У діалоговому вікні встановіть наступні значення:
 </pre>
 
+<table>
+    <thead>
+        <th>
+            <td>Поле</td>
+            <td>Значення</td>
+        </th>
+    <thead>
+    <tbody>
+        <tr>
+            <td>Використання<br>(Usage)</td>
+            <td><b>Auth</b></td>
+        </tr>
+        <tr>
+            <td>Сервіс сертифікації<br>(Certification Service)</td>
+            <td>Виберіть технологічний центр сертифікації ключів середовища СЕВДЕІР («Trembita CA TEST»)</td>
+        </tr>
+        <tr>
+            <td>CSR Format</td>
+            <td>PEM</td>
+        </tr>
+    </tbody>
+</table>
+
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
 [trembita-test-install-3]: /assets/images/trembita-test-install-3.png  "Logo Title Text 2"
