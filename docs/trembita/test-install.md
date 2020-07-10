@@ -66,6 +66,10 @@ ___
 
 Додатковими компонентами тестового середовища Учасника СЕВДЕІР можуть бути тестові бази даних та тестові веб-сервіси/веб-клієнти. Рекомендується створювати тестові бази даних, що за структурою відповідають реальним базам даних реєстрів, але містять тестові дані.
 
+![Мережа][trembita-test-install-0]
+
+Мінімальні апаратні характеристики та використовуване програмне забезпечення (далі - ПЗ) віртуальної машини (фізичного сервера), необхідні для підключення до тестового середовища, наведені у таблиці 1.
+
 ## 3. Процесс інсталяції
 
 ### 3.1. Інсталяція операційної системи {#install-1}
@@ -770,7 +774,7 @@ sudo -u uxp-directory directory-cli --target <serviceFullCode> upload documentat
 sudo -u uxp-directory directory-cli --target SEVDEIR-TEST/GOV/11110011/0_TEST_cons/GetCountryNameByCode2/v1 upload documentation.service-guide /home/secadmin/Trembita_service_guide\ \(2\).pdf
 ```
 
-
+[trembita-test-install-0]: /assets/images/trembita-test-install-0.png  "Logo Title Text 2"
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
 [trembita-test-install-3]: /assets/images/trembita-test-install-3.png  "Logo Title Text 2"
