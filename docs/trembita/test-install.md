@@ -381,6 +381,8 @@ sudo shutdown -r now
 
 Увійдіть використовуючи атрибути облікового запису адміністратора веб-сервісів uxpadmin.
 
+|Власник сервера безпеки (Security Server Owner)|
+| Клас Учасника (Member Class) | GOV |
 
 [trembita-test-install-1]: /assets/images/trembita-test-install-1.png  "Logo Title Text 2"
 [trembita-test-install-2]: /assets/images/trembita-test-install-2.png  "Logo Title Text 2"
