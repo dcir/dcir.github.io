@@ -549,10 +549,10 @@ sudo service uxp-signer restart
 
 <table>
     <thead>
-        <th>
+        <tr>
             <td>Поле</td>
             <td>Значення</td>
-        </th>
+        </tr>
     <thead>
     <tbody>
         <tr>
