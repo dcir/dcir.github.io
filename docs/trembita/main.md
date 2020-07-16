@@ -17,3 +17,5 @@
 [Інсталяція антивірусного програмного забезпечення Sophos Antivirus](member-install-sophos-antivirus.md)
 
 [Встановлення промислового шлюзу безпечного обміну](prom-install.md)
+
+[Інсталяція через Докер](member-ss-docker-install-112.md)
